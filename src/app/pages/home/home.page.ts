@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 import * as Highcharts from 'highcharts/highmaps';
+
 const worldMap = require('@highcharts/map-collection/custom/world.geo.json');
 
 @Component({
@@ -19,9 +20,7 @@ export class HomePage {
     title: {
       text: 'Covid19 Worldmap'
     },
-    subtitle: {
-
-    },
+    subtitle: {},
     mapNavigation: {
       enabled: true,
       buttonOptions: {
@@ -34,10 +33,21 @@ export class HomePage {
     colorAxis: {
       min: 0
     },
+    plotOptions: {
+      series: {
+        point: {
+          events: {
+            click() {
+              alert(this.name);
+            }
+          }
+        }
+      }
+    },
     series: [
       {
         type: 'map',
-        name: 'Random data',
+        name: 'Tode',
         states: {
           hover: {
             color: '#BADA55'
@@ -266,5 +276,7 @@ export class HomePage {
       }
     ]
   };
-  constructor() {}
+
+  constructor() {
+  }
 }
