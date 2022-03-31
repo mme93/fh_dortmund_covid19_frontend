@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'table',
     loadChildren: () => import('./pages/table/table.module').then( m => m.TablePageModule)
   },
+  {
+    path: 'diagram',
+    loadChildren: () => import('./pages/diagram/diagram.module').then( m => m.DiagramPageModule)
+  },
 
 ];
 
