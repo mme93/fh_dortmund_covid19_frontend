@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component } from '@angular/core';
 
 import * as Highcharts from 'highcharts/highmaps';
 
@@ -20,12 +20,16 @@ export class HomePage {
   chartConstructor = 'mapChart';
   chartOptions: Highcharts.Options = {
     chart: {
-      map: worldMap
+      map: worldMap,
+      //width:2000,
+      //height:100
     },
     title: {
       text: 'Covid19 Worldmap'
     },
-    subtitle: {},
+    subtitle: {
+      text: 'Anzahl der Tode'
+    },
     mapNavigation: {
       enabled: true,
       buttonOptions: {
@@ -517,5 +521,7 @@ export class HomePage {
       ]
     };
     this.updateFlag = true;
+
+    //document.getElementsByClassName('highcharts-container');
   }
 }
