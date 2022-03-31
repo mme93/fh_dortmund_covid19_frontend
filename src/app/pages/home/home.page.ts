@@ -1,13 +1,7 @@
-import {Component } from '@angular/core';
-
+import {Component} from '@angular/core';
 import * as Highcharts from 'highcharts/highmaps';
-
-
+import {NavigationExtras, Router} from '@angular/router';
 const worldMap = require('@highcharts/map-collection/custom/world.geo.json');
-
-
-//https://www.highcharts.com/demo/responsive
-//https://github.com/highcharts/highcharts-angular
 
 @Component({
   selector: 'app-home',
@@ -22,9 +16,9 @@ export class HomePage {
   chartOptions: Highcharts.Options = {
     chart: {
       map: worldMap,
-      renderTo:'testContainer',
-      width:window.innerWidth,
-      height:(window.innerHeight/100*80)
+      renderTo: 'testContainer',
+      width: window.innerWidth,
+      height: (window.innerHeight / 100 * 80)
     },
     title: {
       text: 'Covid19 Worldmap'
@@ -48,8 +42,8 @@ export class HomePage {
       series: {
         point: {
           events: {
-            click() {
-              alert(this.name);
+            click: (event) => {
+              this.openCounty(event.point.name);
             }
           }
         }
@@ -288,12 +282,20 @@ export class HomePage {
     ]
   };
 
-
-  constructor() {
-
+  constructor(private router: Router) {
   }
-  upDateData(){
-    this.chartOptions.series[0]= {
+
+  openCounty(countyName: string) {
+    const navigationsExtras: NavigationExtras = {
+      queryParams: {
+        sign: countyName
+      }
+    };
+    this.router.navigate(['county'], navigationsExtras);
+  }
+
+  upDateData() {
+    this.chartOptions.series[0] = {
       type: 'map',
       name: 'Tode',
       states: {
