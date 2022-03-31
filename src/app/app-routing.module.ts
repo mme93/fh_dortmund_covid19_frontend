@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'county',
     loadChildren: () => import('./pages/county/county.module').then( m => m.CountyPageModule)
   },
+  {
+    path: 'table',
+    loadChildren: () => import('./pages/table/table.module').then( m => m.TablePageModule)
+  },
 
 ];
 
