@@ -10,7 +10,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },  {
+    path: 'county',
+    loadChildren: () => import('./pages/county/county.module').then( m => m.CountyPageModule)
   },
+
 ];
 
 @NgModule({
