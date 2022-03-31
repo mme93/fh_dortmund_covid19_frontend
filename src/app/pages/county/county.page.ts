@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
+//https://code.highcharts.com/mapdata/
+
 @Component({
   selector: 'app-county',
   templateUrl: './county.page.html',
