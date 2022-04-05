@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component } from '@angular/core';
 
 import * as Highcharts from 'highcharts/highmaps';
+
 
 const worldMap = require('@highcharts/map-collection/custom/world.geo.json');
 
@@ -20,12 +21,17 @@ export class HomePage {
   chartConstructor = 'mapChart';
   chartOptions: Highcharts.Options = {
     chart: {
-      map: worldMap
+      map: worldMap,
+      renderTo:'testContainer',
+      width:window.innerWidth,
+      height:(window.innerHeight/100*80)
     },
     title: {
       text: 'Covid19 Worldmap'
     },
-    subtitle: {},
+    subtitle: {
+      text: 'Anzahl der Tode'
+    },
     mapNavigation: {
       enabled: true,
       buttonOptions: {
