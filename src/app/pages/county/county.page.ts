@@ -13,7 +13,11 @@ export class CountyPage implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
-      this.countyName=params.countryName;
+      if(!params.countryName === undefined){
+        this.countyName=params.countryName;
+      }else{
+        this.countyName='Germany';
+      }
     });
   }
 
