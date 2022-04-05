@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-county',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CountyPage implements OnInit {
 
-  constructor() { }
+  countyName;
+  constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.countyName=params.countryName;
+    });
   }
 
 }

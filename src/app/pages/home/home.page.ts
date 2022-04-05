@@ -1,6 +1,7 @@
 import {Component } from '@angular/core';
 
 import * as Highcharts from 'highcharts/highmaps';
+import {NavigationExtras, Router} from '@angular/router';
 
 
 const worldMap = require('@highcharts/map-collection/custom/world.geo.json');
@@ -15,10 +16,16 @@ const worldMap = require('@highcharts/map-collection/custom/world.geo.json');
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Highcharts: typeof Highcharts = Highcharts;
   updateFlag = false;
   chartConstructor = 'mapChart';
+  self;
+  constructor(private router: Router) {
+    this.self=this;
+  }
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   chartOptions: Highcharts.Options = {
     chart: {
       map: worldMap,
@@ -48,9 +55,15 @@ export class HomePage {
       series: {
         point: {
           events: {
-            click() {
-              alert(this.name);
-            }
+            // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+            click: function(e){
+              const navigationsExtras: NavigationExtras = {
+                queryParams: {
+                  countryName: e.point.name
+                }
+              };
+              this.router.navigate(['county'], navigationsExtras);
+            }.bind(this)
           }
         }
       }
@@ -287,11 +300,6 @@ export class HomePage {
       }
     ]
   };
-
-
-  constructor() {
-
-  }
   upDateData(){
     this.chartOptions.series[0]= {
       type: 'map',
